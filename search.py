@@ -71,7 +71,7 @@ req = requests.get(url, data = data)
 #print ('get from ES time: ' + str(time.time() - startTime6))
 response = req.content
 
-print response
+print(response)
 
 json_data = json.loads(response)
 

@@ -10,7 +10,7 @@ import requests
 import time
 
 #cpc classification tag
-cpc = "A.*"
+cpc = "A01B"
 
 
 #how many patents get returned in the results list
@@ -20,7 +20,7 @@ RESULT_SIZE = 100000
 REQUIRED_FIELDS = [ 'patent-document.@ucid' ]
 
 
-base_url = "search-bouncypepper-m4utjzuqkoj5ahb32jfqokwvz4.us-west-2.es.amazonaws.com"
+base_url = "https://search-bouncypepper-m4utjzuqkoj5ahb32jfqokwvz4.us-west-2.es.amazonaws.com"
 index_name = "/ifi"
 type_name = "/publication"
 pretty = "?pretty=true"
@@ -38,28 +38,19 @@ query = {
                 "bool" : {
                     "must" : [
                         {
-                           "regexp" : {
-                "patent-document.bibliographic-data.technical-data.classifications-cpc.classification-cpc.$t" : cpc
+                            "match" : {
+                            "patent-document.bibliographic-data.technical-data.classifications-cpc.classification-cpc.$t" : {
+                                    "query" : cpc
+                                }
                             }
-                            # """
-                            #     "match" : {
-                            #     "patent-document.bibliographic-data.technical-data.classifications-cpc.classification-cpc.$t" : {
-                            #         "query" : cpc
-                            #     }
-                            # """
-                            }
+                        }
                     ]
-                }
+                } 
             }
         }
     }
 }
-
-'''
-       "regexp" : {
-				"patent-document.bibliographic-data.technical-data.classifications-cpc.classification-cpc.$t" : pattern
-			}
-'''
+       
 
 
 startTime2 = time.time()
@@ -71,7 +62,7 @@ req = requests.get(url, data = data)
 #print ('get from ES time: ' + str(time.time() - startTime6))
 response = req.content
 
-print(response)
+print response
 
 json_data = json.loads(response)
 
@@ -85,7 +76,7 @@ with open('results.txt', 'w') as outfile:
 with open('results.txt', 'r') as results:
     data = json.load(results)
     results.close()
-
+    
 patent_results_list = []
 
 for x in data["hits"]["hits"]:
@@ -95,9 +86,9 @@ for x in data["hits"]["hits"]:
 REQUIRED_FIELDS = [
                 'patent-document.abstract.p.$t',
               ]
-
+    
 for x in patent_results_list:
-
+    
     query = {
             "_source" : {
                 "include" : REQUIRED_FIELDS
@@ -121,13 +112,13 @@ for x in patent_results_list:
             }
         }
     }
-
+    
     data = json.dumps(query)
     req = requests.get(url, data = data)
     response = req.content
 
     json_data = json.loads(response)
-
+    
     filename = x + '.txt'
 
     with open(filename, 'w') as outfile:

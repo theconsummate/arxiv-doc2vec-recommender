@@ -8,6 +8,10 @@ import os
 import json
 import requests
 import time
+from pymongo import MongoClient
+import pymongo.errors as pyerror
+# init the database object
+db = MongoClient()['patent']
 
 #cpc classification tag
 cpc = "A01B"
@@ -45,12 +49,12 @@ query = {
                             }
                         }
                     ]
-                } 
+                }
             }
         }
     }
 }
-       
+
 
 
 startTime2 = time.time()
@@ -76,7 +80,7 @@ with open('results.txt', 'w') as outfile:
 with open('results.txt', 'r') as results:
     data = json.load(results)
     results.close()
-    
+
 patent_results_list = []
 
 for x in data["hits"]["hits"]:
@@ -86,9 +90,9 @@ for x in data["hits"]["hits"]:
 REQUIRED_FIELDS = [
                 'patent-document.abstract.p.$t',
               ]
-    
+
 for x in patent_results_list:
-    
+
     query = {
             "_source" : {
                 "include" : REQUIRED_FIELDS
@@ -112,19 +116,25 @@ for x in patent_results_list:
             }
         }
     }
-    
+
     data = json.dumps(query)
     req = requests.get(url, data = data)
     response = req.content
 
     json_data = json.loads(response)
-    
-    filename = x + '.txt'
 
-    with open(filename, 'w') as outfile:
-        #json_data needs to be cleaned before outputting to file
-        json.dump(json_data, outfile)
-        outfile.close()
+    filename = x + '.txt'
+    try:
+        for data in json_data['hits']['hits']:
+            data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')
+            db['patents'].insert_one(data)
+    except pyerror.DuplicateKeyError:
+        print "trying to insert duplicate: " + x
+
+    # with open(filename, 'w') as outfile:
+    #     #json_data needs to be cleaned before outputting to file
+    #     json.dump(json_data, outfile)
+    #     outfile.close()
 
 
 

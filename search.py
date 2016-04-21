@@ -127,6 +127,7 @@ for x in patent_results_list:
     try:
         for data in json_data['hits']['hits']:
             data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')
+            data['_cpc'] = cpc
             db['patents'].insert_one(data)
     except pyerror.DuplicateKeyError:
         print "trying to insert duplicate: " + x

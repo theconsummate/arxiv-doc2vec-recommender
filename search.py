@@ -66,7 +66,7 @@ req = requests.get(url, data = data)
 #print ('get from ES time: ' + str(time.time() - startTime6))
 response = req.content
 
-print response
+# print response
 
 json_data = json.loads(response)
 
@@ -126,6 +126,7 @@ for x in patent_results_list:
     filename = x + '.txt'
     try:
         for data in json_data['hits']['hits']:
+            print "Inserting : " + x
             if isinstance(data['_source']['patent-document']['abstract']['p'], list):
                 full_text = " ".join(data['_source']['patent-document']['abstract']['p']):
                 data['_source']['patent-document']['abstract']['p'] = {'text': full_text}

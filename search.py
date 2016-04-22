@@ -127,6 +127,15 @@ for x in patent_results_list:
     try:
         for data in json_data['hits']['hits']:
             print "Inserting : " + x
+            if 'patent-document' not in data['_source'].keys():
+                print 'source is empty'
+                break
+            if['abstract'] not in data['_source']['patent-document'].keys():
+                print 'patent-document is empty'
+                break
+            if['p'] not in data['_source']['patent-document']['abstract'].keys():
+                print 'abstract is empty'
+                break
             if isinstance(data['_source']['patent-document']['abstract']['p'], list):
                 full_text = ''
                 for text_item in data['_source']['patent-document']['abstract']['p']:

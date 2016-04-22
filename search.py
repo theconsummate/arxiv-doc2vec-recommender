@@ -128,7 +128,9 @@ for x in patent_results_list:
         for data in json_data['hits']['hits']:
             print "Inserting : " + x
             if isinstance(data['_source']['patent-document']['abstract']['p'], list):
-                full_text = " ".join(data['_source']['patent-document']['abstract']['p']):
+                full_text = ''
+                for text_item in data['_source']['patent-document']['abstract']['p']:
+                    full_text += text_item['$t']
                 data['_source']['patent-document']['abstract']['p'] = {'text': full_text}
             else:
                 data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')

@@ -126,7 +126,11 @@ for x in patent_results_list:
     filename = x + '.txt'
     try:
         for data in json_data['hits']['hits']:
-            data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')
+            if isinstance(data['_source']['patent-document']['abstract']['p'], list):
+                full_text = " ".join(data['_source']['patent-document']['abstract']['p']):
+                data['_source']['patent-document']['abstract']['p'] = {'text': full_text}
+            else:
+                data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')
             data['_cpc'] = cpc
             db['patents'].insert_one(data)
     except pyerror.DuplicateKeyError:

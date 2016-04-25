@@ -32,7 +32,7 @@ class DocIterator(object):
             # can also add topic tag of form
             # 'topic_{subject_id}' to list
             #tags = [patent['index'], patent['subject']]
-            tags = [patent['_index']]
+            tags = [patent['_id']]
 
             yield TaggedDocument(words, tags)
 

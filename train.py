@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
 import multiprocessing
-import psycopg2
-from psycopg2.extras import DictCursor
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import re
-import argparse
+import sys
 from pymongo import MongoClient
 
 
@@ -22,37 +19,30 @@ class DocIterator(object):
         # with conn.cursor(cursor_factory=DictCursor) as cur:
             # TODO: save names of table and database
             # to a central location. For now, db=arxive and table=articles
-        cur.execute("SELECT * FROM articles;")
-        for patent in conn['patents'].find():
+        for patent in self.conn['patents'].find():
             abstract = patent['_source']['patent-document']['abstract']['p']['text'].replace('\n', ' ').strip()
             # train on body, composed of title and abstract
             # body = patent['title'] + '. '
-            body += abstract
             # We want to keep some punctuation, as Word2Vec
             # considers them useful context
-            words = re.findall(r"[\w']+|[.,!?;]", body)
+            words = re.findall(r"[\w']+|[.,!?;]", abstract)
             # lowercase. perhaps lemmatize too?
             words = [word.lower() for word in words]
             # document tag. Unique integer 'index' is good.
             # can also add topic tag of form
             # 'topic_{subject_id}' to list
             #tags = [patent['index'], patent['subject']]
-            tags = [patent['index']]
+            tags = [patent['_index']]
 
             yield TaggedDocument(words, tags)
 
 
+
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='trains model based on corpus in psql')
-    parser.add_argument('dbname', help="Name of postgres database")
-    parser.add_argument('path_to_model', help="Filepath and name for model")
-    args = parser.parse_args()
-
     n_cpus = multiprocessing.cpu_count()
-    db = MongoClient()[args.dbname]
+    db = MongoClient()[sys.argv[1]]
     doc_iterator = DocIterator(db)
     model = Doc2Vec(documents=doc_iterator, workers=n_cpus, size=100)
-
-    model.save(args.path_to_model)
-    print("Model can be found at %s"%args.path_to_model)
+    path = './doc2vec_model'
+    model.save(path)
+    print("Model can be found at " + path)

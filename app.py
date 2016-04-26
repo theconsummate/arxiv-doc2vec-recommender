@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
-from operator import itemgetter
-import psycopg2
-from psycopg2.extras import DictCursor
+from pymongo import MongoClient
 from flask import Flask, render_template, request, url_for
 from gensim.models import Doc2Vec
 import re
-import argparse
 
 appserver = Flask(__name__)
 
 """Helpers"""
 
-def get_subjects():
+def get_cpc_codes():
     """
     OUTPUT: list of tuples containing:
             (subject name, count)
@@ -89,7 +86,7 @@ def browse_subjects(subject=None):
     or the list of articles by given subject
     """
     if subject is None:
-        return render_template("browse.html", subjects=get_subjects())
+        return render_template("browse.html", subjects=get_cpc_codes())
     else:
         articles = get_articles_by_subject(subject)
         return render_template("articles.html", articles=articles, subject=subject)
@@ -162,19 +159,14 @@ def viz():
     articles in each topic.
     """
     csv_dest = url_for('static', filename='subject_distances.csv')
+    print "inside"
     return render_template("louvain.html", csv_dest=csv_dest)
 
 
 if __name__ == '__main__':
-
-    parser = argparse.ArgumentParser(description='Fire up flask server with appropriate model')
-    parser.add_argument('model_path', help="Name of model file")
-    parser.add_argument('port', help="Port to run on", default=5000)
-    args = parser.parse_args()
-
     # run app in db connection context
-    with psycopg2.connect(dbname='arxiv') as conn:
-        # load model:
-        model = Doc2Vec.load(args.model_path)
-        # appserver.run(host='0.0.0.0', port=int(args.port), debug=True)
-        appserver.run(host='0.0.0.0', port=int(args.port))
+    db = MongoClient()['patent']
+    # load model:
+    model = Doc2Vec.load('./doc2vec_model')
+    # appserver.run(host='0.0.0.0', port=int(args.port), debug=True)
+    appserver.run(host='0.0.0.0', port=5000)

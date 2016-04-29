@@ -16,6 +16,7 @@ db = MongoClient()['patent']
 
 cpc_file = open('cpc.txt', 'r')
 for cpc in cpc_file.readlines():
+    cpc = cpc.strip()
     #cpc classification tag
     # cpc = "A01B"
 

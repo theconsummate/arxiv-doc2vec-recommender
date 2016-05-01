@@ -22,7 +22,7 @@ and lastly produce a CSV that relates the n closest topics,
 with one relationship per row.
 """
 
-def get_category_hash():
+def get_category_hash(db):
     """
     INPUT: (str) name of database containing the subjects table.
     NOTE: The subject table is produces by cache_subject_hash.py
@@ -34,7 +34,7 @@ def get_category_hash():
     subject_hash = {i['cat_code']: i['cpc_code'] for i in results}
     return subject_hash
 
-def get_category_vectors(category_hash):
+def get_category_vectors(category_hash, db, model):
     """
     Get panda DataFrame where each row is a subject's average docvec
     and index is the subject_id
@@ -70,22 +70,18 @@ def get_n_closest(distance_mat, subject_id, n=5):
     return closest
 
 
-if __name__ == '__main__':
-
-    model = Doc2Vec.load('../doc2vec_model')
-    db = MongoClient()['patent']
-
-    category_hash = get_category_hash()
+def get_distances(db, model, n_closest):
+    category_hash = get_category_hash(db)
     category_ids = list(category_hash.keys())
 
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
-    cpc_vectors = get_category_vectors(category_hash)
+    cpc_vectors = get_category_vectors(category_hash, db)
     distance_mat = get_distance_mat(cpc_vectors)
 
     to_csv = []
     for subj_id in category_ids:
-        relateds = get_n_closest(distance_mat, subj_id, n=int(sys.argv[1]))
+        relateds = get_n_closest(distance_mat, subj_id, n=n_closest)
         print relateds
         for related_id, dist in relateds.iteritems():
             weight = round(1./dist)
@@ -95,3 +91,10 @@ if __name__ == '__main__':
 
     edges = pd.DataFrame(to_csv, columns=['source', 'target', 'weight', 'source_name', 'target_name'])
     edges.to_csv('../static/subject_distances.csv', index=False)
+
+if __name__ == '__main__':
+    print "main"
+    model = Doc2Vec.load('../doc2vec_model')
+    db = MongoClient()['patent']
+    get_distances(db, model, int(sys.argv[1]))
+

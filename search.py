@@ -133,7 +133,7 @@ for cpc in cpc_file.readlines():
         filename = x + '.txt'
         try:
             for data in json_data['hits']['hits']:
-                print "Inserting : " + x
+                # print "Inserting : " + x
                 if 'patent-document' not in data['_source'].keys():
                     print 'source is empty'
                     break
@@ -147,7 +147,7 @@ for cpc in cpc_file.readlines():
                 data['_cpc'] = cpc
                 db['patents'].insert_one(data)
         except pyerror.DuplicateKeyError:
-            print "trying to insert duplicate: " + x
+            pass
 
 cpc_file.close()
     # with open(filename, 'w') as outfile:

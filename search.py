@@ -11,7 +11,7 @@ import time
 from pymongo import MongoClient
 import pymongo.errors as pyerror
 # init the database object
-db = MongoClient()['patent']
+db = MongoClient()[sys.argv[2]]
 
 
 cpc_file = open(sys.argv[1], 'r')

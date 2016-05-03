@@ -76,7 +76,7 @@ def get_distances(db, model, n_closest):
 
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
-    cpc_vectors = get_category_vectors(category_hash, db)
+    cpc_vectors = get_category_vectors(category_hash, db, model)
     distance_mat = get_distance_mat(cpc_vectors)
 
     to_csv = []

@@ -14,7 +14,7 @@ import pymongo.errors as pyerror
 db = MongoClient()['patent']
 
 
-cpc_file = open('cpc.txt', 'r')
+cpc_file = open(sys.argv[1], 'r')
 for cpc in cpc_file.readlines():
     cpc = cpc.strip()
     #cpc classification tag

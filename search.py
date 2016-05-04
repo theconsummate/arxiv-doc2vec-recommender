@@ -71,8 +71,10 @@ for cpc in cpc_file.readlines():
     response = req.content
 
     # print response
-
-    json_data = json.loads(response)
+    try:
+        json_data = json.loads(response)
+    except ValueError:
+        print 'Invalid json'
 
     with open('results.txt', 'w') as outfile:
         json.dump(json_data, outfile)

@@ -73,12 +73,13 @@ for cpc in cpc_file.readlines():
     # print response
     try:
         json_data = json.loads(response)
+
+        with open('results.txt', 'w') as outfile:
+            json.dump(json_data, outfile)
+            outfile.close()
+
     except ValueError:
         print 'Invalid json'
-
-    with open('results.txt', 'w') as outfile:
-        json.dump(json_data, outfile)
-        outfile.close()
 
 
     # In[17]:

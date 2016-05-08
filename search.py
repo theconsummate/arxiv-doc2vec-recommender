@@ -70,29 +70,16 @@ for cpc in cpc_file.readlines():
     #print ('get from ES time: ' + str(time.time() - startTime6))
     response = req.content
 
+    patent_results_list = []
     # print response
     try:
-        json_data = json.loads(response)
-
-        with open('results.txt', 'w') as outfile:
-            json.dump(json_data, outfile)
-            outfile.close()
+        data = json.loads(response)
+        for x in data["hits"]["hits"]:
+            val = x["_source"]["patent-document"]["@ucid"]
+            patent_results_list.append(val)
 
     except ValueError:
         print 'Invalid json'
-
-
-    # In[17]:
-
-    with open('results.txt', 'r') as results:
-        data = json.load(results)
-        results.close()
-
-    patent_results_list = []
-
-    for x in data["hits"]["hits"]:
-        val = x["_source"]["patent-document"]["@ucid"]
-        patent_results_list.append(val)
 
     REQUIRED_FIELDS = [
                     'patent-document.abstract.p.$t',
@@ -152,7 +139,7 @@ for cpc in cpc_file.readlines():
                 data['_cpc_category'] = cpc_category
                 db['patents'].insert_one(data)
         except pyerror.DuplicateKeyError:
-            pass
+            print "duplicate"
 
 cpc_file.close()
     # with open(filename, 'w') as outfile:

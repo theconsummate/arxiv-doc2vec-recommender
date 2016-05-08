@@ -17,6 +17,7 @@ db = MongoClient()[sys.argv[2]]
 cpc_file = open(sys.argv[1], 'r')
 for cpc in cpc_file.readlines():
     cpc = cpc.strip()
+    cpc, cpc_category = row.strip().split(',')
     #cpc classification tag
     # cpc = "A01B"
 
@@ -148,6 +149,7 @@ for cpc in cpc_file.readlines():
                 else:
                     data['_source']['patent-document']['abstract']['p']['text'] = data['_source']['patent-document']['abstract']['p'].pop('$t')
                 data['_cpc'] = cpc
+                data['_cpc_category'] = cpc_category
                 db['patents'].insert_one(data)
         except pyerror.DuplicateKeyError:
             pass

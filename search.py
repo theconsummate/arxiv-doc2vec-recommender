@@ -101,7 +101,8 @@ for cpc in cpc_file.readlines():
     for x in patent_results_list:
         db_query = db['patents'].find({"_id":x}).count()
         if db_query > 0:
-            break
+            print "id exists"
+            continue
 
         query = {
                 "_source" : {

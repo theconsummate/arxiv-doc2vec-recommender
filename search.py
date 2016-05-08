@@ -16,8 +16,7 @@ db = MongoClient()[sys.argv[2]]
 
 cpc_file = open(sys.argv[1], 'r')
 for cpc in cpc_file.readlines():
-    cpc = cpc.strip()
-    cpc, cpc_category = row.strip().split(',')
+    cpc, cpc_category = cpc.strip().split(',')
     #cpc classification tag
     # cpc = "A01B"
 

@@ -10,17 +10,9 @@ import requests
 import time
 from pymongo import MongoClient
 import pymongo.errors as pyerror
-# init the database object
-db = MongoClient()[sys.argv[2]]
 
 
-cpc_file = open(sys.argv[1], 'r')
-for cpc in cpc_file.readlines():
-    cpc, cpc_category = cpc.strip().split(',')
-    #cpc classification tag
-    # cpc = "A01B"
-
-
+def get_data_for_cpc(db, cpc, cpc_category):
     #how many patents get returned in the results list
     RESULT_SIZE = 100000
 
@@ -79,7 +71,8 @@ for cpc in cpc_file.readlines():
             patent_results_list.append(val)
 
     except ValueError:
-        print 'Invalid json'
+        pass
+        # print 'Invalid json'
 
     REQUIRED_FIELDS = [
                     'patent-document.abstract.p.$t',
@@ -88,7 +81,7 @@ for cpc in cpc_file.readlines():
     for x in patent_results_list:
         db_query = db['patents'].find({"_id":x}).count()
         if db_query > 0:
-            print "id exists"
+            # print "id exists"
             continue
 
         query = {
@@ -139,15 +132,25 @@ for cpc in cpc_file.readlines():
                 data['_cpc_category'] = cpc_category
                 db['patents'].insert_one(data)
         except pyerror.DuplicateKeyError:
-            print "duplicate"
+            # print "duplicate"
+            pass
 
-cpc_file.close()
     # with open(filename, 'w') as outfile:
     #     #json_data needs to be cleaned before outputting to file
     #     json.dump(json_data, outfile)
     #     outfile.close()
 
 
+if __name__ == '__main__':
+    db = MongoClient()[sys.argv[3]]
+    cpc = sys.argv[1]
+    cpc_category = sys.argv[2]
+    get_data_for_cpc(db, cpc, cpc_category)
+    # cpc_file = open(sys.argv[1], 'r')
+    # for cpc in cpc_file.readlines():
+    #     cpc, cpc_category = cpc.strip().split(',')
+    #     get_data_for_cpc(db, cpc, cpc_category)
+    # cpc_file.close()
 
 
 # In[ ]:

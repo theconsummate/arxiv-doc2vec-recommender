@@ -1,0 +1,649 @@
+A01B,Soil Working,1
+A01C,Soil Working,1
+A01D,Harvesting,1
+A01F,Harvesting,1
+A01G,Harvesting,1
+A01J,Animal Husbandry,1
+A01K,Animal Husbandry,1
+A01L,Animal Husbandry,1
+A01M,Protection of Plants,1
+A01N,Protection of Plants,1
+A01H,Organisms,1
+A21B,Grain & Bread,1
+A21C,Grain & Bread,1
+A21D,Grain & Bread,1
+A22B,Animal Products,1
+A23B,Animal Products,1
+A24B,Tobacco,1
+A24C,Tobacco,1
+A24D,Tobacco,1
+A24F,Tobacco,1
+A23F,Dessertables,1
+A23G,Dessertables,1
+A23D,Edible Fats,1
+A23J,Food Preparation,1
+A23L,Food Preparation,1
+A23N,Food Preparation,1
+A23P,Food Preparation,1
+A23Y,Food Preparation,1
+A41B,Apparel,1
+A41C,Apparel,1
+A41D,Apparel,1
+A41F,Apparel,1
+A41G,Apparel,1
+A41H,Apparel,1
+A43B,Footwear,1
+A43C,Footwear,1
+A43D,Footwear,1
+A42B,Headwear,1
+A42C,Headwear,1
+A44B,Ornamentation,1
+A44C,Ornamentation,1
+A45B,Personal Utility,1
+A45C,Personal Utility,1
+A45D,Personal Utility,1
+A45F,Personal Utility,1
+A46B,Personal Utility,1
+A46D,Personal Utility,1
+A61Q,Personal Utility,1
+A44C,Personal Utility,1
+A47B,Furniture,1
+A47C,Furniture,1
+A47D,Furniture,1
+A47F,Furniture,1
+A47H,Household & Office Utility,1
+A47F,Household & Office Utility,1
+A47J,Household & Office Utility,1
+A47K,Household & Office Utility,1
+A47L,Household & Office Utility,1
+A63B,Sports Equipment,1
+A63C,Sports Equipment,1
+A63D,Sports Equipment,1
+A63K,Sports Equipment,1
+A63F,Games & Toys,1
+A63H,Games & Toys,1
+A63G,Games & Toys,1
+A63J,Amusement,1
+A62C,Emergency Devices,1
+A62D,Emergency Devices,1
+A62B,Emergency Devices,1
+A22C,Animal Products,1
+A23C,Animal Products,1
+A23K,Animal Husbandry,1
+A23V,IGNORE,1
+A44D,IGNORE,1
+A47G,Household & Office Utility,1
+A61B,Diagnosis & Surgery,
+A61C,Dentistry,1
+A61D,Veterinary,1
+A61F,Medical Devices,1
+A61G,Medical Devices,1
+A61H,Medical Devices,1
+A61J,Medical Devices,1
+A61K,Medicines,1
+A61L,Medical Devices,1
+A61M,Medical Devices,
+A61N,Medical Devices,
+B01B,Separation,1
+B01D,Separation,1
+B01F,Mixing & Dissolving,1
+B01J,Catalysis,1
+B01L,Lab Equipment,1
+B02B,Crushing,1
+B02C,Crushing,1
+B03B,Separation,1
+B03C,Separation,1
+B03D,Separation,1
+B04B,Separation,1
+B04C,Separation,1
+B05B,Spraying,1
+B05C,Spraying,1
+B05D,Spraying,1
+B06B,Signal Transmission,
+B07B,Separation,1
+B07C,Separation,
+B08B,Cleaning,1
+B09B,Waste Treatment,1
+B09C,Waste Treatment,1
+B21B,Metal Working,1
+B21C,Metal Working,1
+B21D,Metal Working,1
+B21F,Metal Working,1
+B21G,Metal Working,1
+B21H,Metal Working,1
+B21J,Metal Working,1
+B21K,Metal Working,1
+B21L,Metal Working,1
+B22C,Casting,1
+B22D,Casting,1
+B22F,Powder Metallurgy,1
+B23B,Metal Working,1
+B23C,Metal Working,1
+B23D,Metal Working,1
+B23F,Metal Working,1
+B23G,Metal Working,1
+B23H,Metal Working,1
+B23K,Metal Working,1
+B23P,Metal Working,1
+B23Q,Metal Working,1
+B24B,Polishing,1
+B24C,Polishing,1
+B24D,Polishing,1
+B25B,Construction,1
+B25C,Construction,1
+B25D,Construction,1
+B25F,Construction,1
+B25G,Construction,1
+B25H,Construction,1
+B25J,Construction,1
+B26B,Cutting,1
+B26D,Cutting,1
+B26F,Cutting,1
+B27B,Wood,1
+B27C,Wood,1
+B27D,Wood,1
+B27F,Wood,1
+B27G,Wood,1
+B27H,Wood,1
+B27J,Wood,1
+B27K,Wood,1
+B27L,Wood,1
+B27M,Wood,1
+B27N,Wood,1
+B28B,Stone,1
+B28C,Stone,1
+B28D,Stone,1
+B29B,Polymers,1
+B29C,Polymers,1
+B29D,Polymers,1
+B29K,IGNORE,1
+B29L,IGNORE,1
+B30B,Pressing,1
+B31B,Paper,1
+B31C,Paper,1
+B31D,Paper,1
+B31F,Paper,1
+B32B,Coating & Layers,
+B41B,Printing,
+B41C,Printing,
+B41D,Printing,
+B41F,Printing,
+B41G,Printing,
+B41J,Printing,
+B41K,Printing,
+B41L,Printing,
+B41M,Printing,
+B41N,Printing,
+B41P,IGNORE,
+B42B,Household & Office Utility,
+B42C,Household & Office Utility,
+B42D,Household & Office Utility,
+B42F,Household & Office Utility,
+B42P,IGNORE,
+B43K,Household & Office Utility,
+B43L,Household & Office Utility,
+B43M,Household & Office Utility,
+B44B,Arts,
+B44C,Arts,
+B44D,Arts,
+B44F,Arts,
+B60B,General Transportation,
+B60C,General Transportation,
+B60D,General Transportation,
+B60F,General Transportation,
+B60G,General Transportation,
+B60H,General Transportation,
+B60J,General Transportation,
+B60K,General Transportation,
+B60L,Electic Vehicles,
+B60M,General Transportation,
+B60N,General Transportation,
+B60P,General Transportation,
+B60Q,General Transportation,
+B60R,General Transportation,
+B60S,General Transportation,
+B60T,General Transportation,
+B60V,General Transportation,
+B60W,Hybrid Vehicles,
+B60Y,IGNORE,
+B61B,Rail,
+B61C,Rail,
+B61D,Rail,
+B61F,Rail,
+B61G,Rail,
+B61H,Rail,
+B61J,Rail,
+B61K,Rail,
+B61L,Rail,
+B62B,Non-Motor Land Vehicles,
+B62C,Non-Motor Land Vehicles,
+B62D,Motor Land Vehicles,
+B62H,Non-Motor Land Vehicles,
+B62J,Non-Motor Land Vehicles,
+B62K,Non-Motor Land Vehicles,
+B62L,Non-Motor Land Vehicles,
+B62M,Non-Motor Land Vehicles,
+B63B,Nautical Vehicles,
+B63C,Nautical Vehicles,
+B63G,Nautical Vehicles,
+B63H,Nautical Vehicles,
+B63J,Nautical Vehicles,
+B64B,Aeronautical,
+B64C,Aeronautical,
+B64D,Aeronautical,
+B64F,Aeronautical,
+B64G,Astronautical,
+B65B,Package Handling,
+B65C,Package Handling,
+B65D,Package Handling,
+B65F,Package Handling,
+B65G,Package Handling,
+B65H,Package Handling,
+B66B,Lifting,
+B66C,Lifting,
+B66D,Lifting,
+B66F,Lifting,
+B67B,Package Handling,
+B67C,Package Handling,
+B67D,Package Handling,
+B68B,Animal Husbandry,
+B68C,Animal Husbandry,
+B68F,Animal Husbandry,
+B68G,Animal Husbandry,
+B81B,Microtechnology,
+B81C,Microtechnology,
+B82B,Nanotechnology,
+B82Y,Nanotechnology,
+B33Y,3D Printing,
+C01B,Non-Metallics,1
+C01C,Non-Metallics,1
+C01D,Alkali & Alkaline Metals,1
+C01F,Alkali & Alkaline Metals,1
+C01G,Alkali & Alkaline Metals,1
+C01P,IGNORE,
+C02F,Waste Treatment,1
+C03B,Glass or Ceramics,1
+C03C,Glass or Ceramics,1
+C04B,Cement,1
+C05B,Fertilizers,1
+C05C,Fertilizers,1
+C05D,Fertilizers,1
+C05F,Fertilizers,1
+C05G,Fertilizers,1
+C06B,Explosives,1
+C06C,Fire Starters,1
+C06D,Grenades,1
+C06F,Fire Starters,1
+C07B,Organics,1
+C07C,Organics,1
+C07D,Organics,1
+C07F,Organics,1
+C07G,Biochemistry,1
+C07H,Biochemistry,1
+C07J,Biochemistry,1
+C07K,Biochemistry,1
+C08B,Biochemistry,1
+C08C,Polymers,1
+C08F,Polymers,1
+C08G,Polymers,1
+C08H,Polymers,1
+C08J,Polymers,1
+C08K,Polymers,1
+C08L,Polymers,1
+C09B,Organic Materials,1
+C09C,Dyes,1
+C09D,Organic Materials,1
+C09F,Organic Materials,1
+C09G,Organic Materials,
+C09H,Organic Materials,
+C09J,Organic Materials,
+C09K,Organic Materials,
+C10B,Petroleum,1
+C10C,Petroleum,1
+C10F,Petroleum,1
+C10G,Cracking,1
+C10H,Acetylene,1
+C10J,Fuel Gases,1
+C10K,Fuel Gases,1
+C10L,Fuel Gases,1
+C10M,Oils,1
+C10N,IGNORE,
+C11B,Fatty Acids,
+C11C,Fatty Acids,
+C11D,Fatty Acids,
+C12C,Alcohol,
+C12F,Alcohol,
+C12G,Alcohol,
+C12H,Alcohol,
+C12J,Alcohol,
+C12L,Alcohol,
+C12M,Microbiology,
+C12N,Microbiology,
+C12P,Microbiology,
+C12Q,Microbiology,
+C12R,Microbiology,
+C12Y,Microbiology,
+C13B,Sugars,
+C13K,Sugars,
+C14B,Leathers,
+C14C,Leathers,
+C21B,Iron,1
+C21C,Iron,1
+C21D,Iron,1
+C22B,Non-Ferrous,1
+C22C,Non-Ferrous,
+C22F,Non-Ferrous,
+C23C,Coating & Layers,
+C23D,Enameling,
+C23F,Surface Treatment,
+C23G,Surface Treatment,
+C25B,Electrolytics,
+C25C,Electrolytics,
+C25D,Electrolytics,
+C25F,Electrolytics,
+C30B,Crystal Chemistry,
+C40B,Organic,
+D01B,Textiles,
+D01C,Textiles,
+D01D,Textiles,
+D01F,Textiles,
+D01G,Textiles,
+D01H,Textiles,
+D02G,Textiles,
+D02H,Textiles,
+D02J,Textiles,
+D03C,Textiles,
+D03D,Textiles,
+D03J,Textiles,
+D04B,Textiles,
+D04C,Textiles,
+D04D,Textiles,
+D04G,Textiles,
+D04H,Textiles,
+D05B,Textiles,
+D05C,Textiles,
+D05D,Textiles,
+D06B,Textiles,
+D06C,Textiles,
+D06F,Textiles,
+D06G,Textiles,
+D06H,Textiles,
+D06J,Textiles,
+D06L,Textiles,
+D06M,Textiles,
+D06N,Textiles,
+D06P,Textiles,
+D06Q,Textiles,
+D07B,Textiles,
+D10B,Textiles,
+D21B,Textiles,
+D21C,Textiles,
+D21D,Textiles,
+D21F,Textiles,
+D21G,Textiles,
+D21H,Textiles,
+D21J,Textiles,
+E01B,Thruways,
+E01C,Thruways,
+E01D,Bridges,
+E01F,Miscellanous Thruways,
+E01H,Cleaning ,
+E02B,Hydraulics,
+E02C,Hydraulics,
+E02D,Hydraulics,
+E02F,Hydraulics,
+E03B,Plumbing,
+E03C,Plumbing,
+E03D,Plumbing,
+E03F,Plumbing,
+E04B,Installation,
+E04C,Installation,
+E04D,Installation,
+E04F,Installation,
+E04G,Installation,
+E04H,Installation,
+E05B,Personal Utility,
+E05C,Hinges,
+E05D,Hinges,
+E05F,Hinges,
+E05G,Personal Utility,
+E05Y,IGNORE,
+E06B,Installation,
+E06C,Ladders,
+E21B,Drilling & Mining,1
+E21C,Excavation,
+E21D,Drilling & Mining,1
+E21F,Drilling & Mining,1
+F01B,Engines,
+F01C,Engines,
+F01D,Engines,
+F01K,Engines,
+F01L,Engines,
+F01M,Engines,
+F01N,Engines,
+F01P,Engines,
+F02B,Engines,
+F02C,Engines,
+F02D,Engines,
+F02F,Engines,
+F02G,Engines,
+F02K,Engines,
+F02M,Engines,
+F02N,Engines,
+F02P,Engines,
+F02W,Engines,
+F03B,Engines,
+F03C,Engines,
+F03D,Engines,
+F03G,Engines,
+F03H,Engines,
+F04B,Engines,
+F04C,Engines,
+F04D,Engines,
+F04F,Engines,
+F05B,ignore,
+F05C,ignore,
+F05D,ignore,
+F15B,Machines,
+F15C,Machines,
+F15D,Machines,
+F16B,Machines,
+F16C,Machines,
+F16D,Machines,
+F16F,Machines,
+F16G,Machines,
+F16H,Machines,
+F16J,Machines,
+F16K,Machines,
+F16L,Machines,
+F16M,Machines,
+F16N,Machines,
+F16P,Machines,
+F16S,Machines,
+F16T,Machines,
+F17B,Storage,1
+F17C,Storage,1
+F17D,Storage,1
+F21H,Lights,
+F21K,Lights,
+F21L,Lights,
+F21S,Lights,
+F21V,Lights,
+F21W,ignore,
+F21Y,ignore,
+F22B,Steam,
+F22D,Steam,
+F22G,Steam,
+F23B,Combustion,
+F23C,Combustion,
+F23D,Combustion,
+F23G,Combustion,
+F23H,Combustion,
+F23J,Combustion,
+F23K,Combustion,
+F23L,Combustion,
+F23M,Combustion,
+F23N,Combustion,
+F23Q,Combustion,
+F23R,Combustion,
+F24B,Heating,
+F24C,Heating,
+F24D,Heating,
+F24F,Cooling,
+F24H,Heating,
+F24J,Heating,
+F25B,Cooling,
+F25C,Cooling,
+F25D,Cooling,
+F25J,Cooling,
+F26B,Drying,
+F27B,Drying,
+F27D,Drying,
+F27M,Ignore,
+F28B,Heat Exchangers,
+F28C,Heat Exchangers,
+F28D,Heat Exchangers,
+F28F,Heat Exchangers,
+F28G,Heat Exchangers,
+F41A,Weapons,
+F41B,Weapons,
+F41C,Weapons,
+F41F,Weapons,
+F41G,Weapons,
+F41H,Weapons,
+F41J,Weapons,
+F42B,Ammunition,
+F42C,Ammunition,
+F42D,Ammunition,
+G01B,Measuring,
+G01C,Measuring,
+G01D,Measuring,
+G01F,Measuring,
+G01G,Measuring,
+G01H,Measuring,
+G01J,Measuring,
+G01K,Measuring,
+G01L,Measuring,
+G01M,Measuring,
+G01N,Measuring,
+G01P,Measuring,
+G01Q,Measuring,
+G01R,Measuring,
+G01S,Measuring,
+G01T,Measuring,
+G01V,Measuring,
+G01W,Measuring,
+G02B,Optics,
+G02C,Optics,
+G02F,Optics,
+G03B,Photography,
+G03C,Photography,
+G03D,Photography,
+G03F,Photography,
+G03G,Photography,
+G03H,Photography,
+G04B,Time Measurement,
+G04C,Time Measurement,
+G04D,Time Measurement,
+G04F,Time Measurement,
+G04G,Time Measurement,
+G04R,Time Measurement,
+G05B,Process Control,
+G05D,Process Control,
+G05F,Process Control,
+G05G,Process Control,
+G06C,Computation,
+G06D,Computation,
+G06E,Computation,
+G06F,Computation,
+G06G,Computation,
+G06J,Computation,
+G06K,Data,
+G06M,Data,
+G06N,Computation,
+G06Q,Business Methods,
+G06T,Imaging,
+G07B,Coin Machines,
+G07C,Coin Machines,
+G07D,Coin Machines,
+G07F,Coin Machines,
+G07G,Coin Machines,
+G08B,Signal Transmission,
+G08C,Signal Transmission,
+G08G,Signal Transmission,
+G09B,Education,
+G09C,Cryptography,
+G09D,,
+G09F,,
+G09G,,
+G10B,,
+G10C,,
+G10D,,
+G10F,,
+G10G,,
+G10H,,
+G10K,Electrical Components,
+G10L,,
+G11B,Data Storage,
+G11C,Data Storage,
+G12B,,
+G21B,Nuclear,
+G21C,Nuclear,
+G21D,Nuclear,
+G21F,Nuclear,
+G21G,Nuclear,
+G21H,Nuclear,
+G21J,Nuclear,
+G21K,Nuclear,
+G21Y,Nuclear,
+H01B,Electrical Components,
+H01C,Electrical Components,
+H01F,Electrical Components,
+H01G,Electrical Components,
+H01H,Electrical Components,
+H01J,Electrical Components,
+H01K,Electrical Components,
+H01L,Electrical Components,
+H01M,Electrical Components,
+H01P,Electrical Components,
+H01Q,Electrical Components,
+H01R,Electrical Components,
+H01S,Electrical Components,
+H01T,Electrical Components,
+H02B,Electric Grid,
+H02G,Electric Grid,
+H02H,Electric Grid,
+H02J,Electric Grid,
+H02K,Electric Grid,
+H02M,Electric Grid,
+H02N,Electric Grid,
+H02P,Electric Grid,
+H02S,Electric Grid,
+H03B,Circuitry,
+H03C,Circuitry,
+H03D,Circuitry,
+H03F,Circuitry,
+H03G,Circuitry,
+H03H,Circuitry,
+H03J,Circuitry,
+H03K,Circuitry,
+H03L,Circuitry,
+H03M,Circuitry,
+H04B,Telecom,
+H04H,Telecom,
+H04J,Telecom,
+H04K,Telecom,
+H04L,Telecom,
+H04M,Telecom,
+H04N,Telecom,
+H04Q,Telecom,
+H04R,Telecom,
+H04S,Telecom,
+H04T,Telecom,
+H04W,Telecom,
+H05B,Discharge,
+H05C,Discharge,
+H05F,Discharge,
+H05G,Discharge,
+H05H,Discharge,
+H05K,Circuitry,

@@ -78,6 +78,7 @@ def get_data_for_cpc(db, cpc, cpc_category):
                     'patent-document.abstract.p.$t',
                   ]
 
+    print len(patent_results_list)
     for x in patent_results_list:
         db_query = db['patents'].find({"_id":x}).count()
         if db_query > 0:
@@ -119,7 +120,7 @@ def get_data_for_cpc(db, cpc, cpc_category):
             for data in json_data['hits']['hits']:
                 # print "Inserting : " + x
                 if 'patent-document' not in data['_source'].keys():
-                    print 'source is empty'
+                    # print 'source is empty'
                     break
                 if isinstance(data['_source']['patent-document']['abstract']['p'], list):
                     full_text = ''
@@ -146,6 +147,9 @@ if __name__ == '__main__':
     cpc = sys.argv[1]
     cpc_category = sys.argv[2]
     get_data_for_cpc(db, cpc, cpc_category)
+    print("finished process for " + cpc)
+    f = open('./logs/' + cpc + '.txt', 'w')
+    f.close()
     # cpc_file = open(sys.argv[1], 'r')
     # for cpc in cpc_file.readlines():
     #     cpc, cpc_category = cpc.strip().split(',')

@@ -1,11 +1,13 @@
 from multiprocessing import Process
 import os
+import sys
 
 
-def get_category_dict():
+def get_category_dict(start, end):
     file = open('../conversion_codes.csv')
     json = {}
-    for row in file.readlines():
+    rows = file.readlines()[start:end]
+    for row in rows:
         code, cat, done = row.strip().split(',')
         code = code.strip()
         cat = cat.strip()
@@ -35,13 +37,14 @@ def codes(category, codes):
 
 
 if __name__ == '__main__':
-    categories = get_category_dict()
+    start = int(sys.argv[1])
+    end = int(sys.argv[2])
+    categories = get_category_dict(start, end)
     # print(categories)
-    ps = []
+    pool = []
     for cat in categories:
         p = Process(target=codes, args=(cat, categories[cat],))
-        ps.append(p)
-    for p in ps:
         p.start()
-    for p in ps:
+        pool.append(p)
+    for p in pool:
         p.join()

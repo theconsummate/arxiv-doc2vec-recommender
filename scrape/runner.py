@@ -23,8 +23,8 @@ def get_category_dict():
 def code(category, code):
     print("processing: " + category + ":" + code)
     command = 'python search.py ' + code + ' "' + category + '" ' + 'p'+code[0].lower()
-    # print(command)
-    os.system(command)
+    print(command)
+    # os.system(command)
     print("finished process for " + code)
 
 def codes(category, codes):
@@ -43,5 +43,5 @@ if __name__ == '__main__':
         ps.append(p)
     for p in ps:
         p.start()
-    for p in ps:g
+    for p in ps:
         p.join()

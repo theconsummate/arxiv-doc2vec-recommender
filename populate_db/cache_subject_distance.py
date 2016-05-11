@@ -71,7 +71,7 @@ def get_n_closest(distance_mat, subject_id, n=5):
     return closest
 
 
-def get_category_vectors_all_db(db, model, n_closest):
+def get_category_vectors_all_db(db, model):
     dbs_list = ['pa', 'pb', 'pc', 'pd', 'pe', 'pf', 'pg', 'ph']
     cpc_vectors = {}
     for database in dbs_list:
@@ -83,10 +83,10 @@ def get_category_vectors_all_db(db, model, n_closest):
         cpc_vectors.update(cpc_vectors_single_db)
     return pd.DataFrame(cpc_vectors).T
 
-def get_distances(db, model, n_closest:
+def get_distances(db, model, n_closest):
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
-    cpc_vectors = get_category_vectors_all_db(category_hash, db, model)
+    cpc_vectors = get_category_vectors_all_db(db, model)
     distance_mat = get_distance_mat(cpc_vectors)
 
     to_csv = []

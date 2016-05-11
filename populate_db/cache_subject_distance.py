@@ -30,8 +30,8 @@ def get_category_hash(db):
     OUTPUT: (dict) {subject_id: subject_name}
     """
     # add cpc description here later
-    results = db['categories'].find({}, {"_id":0})
-    subject_hash = {i['cat_code']: i['cpc_code'] for i in results}
+    results = db['patents'].find({}, {"_id":0, "_cpc_category":1})
+    subject_hash = {i['_cpc_category']: i['_cpc_category'] for i in results}
     return subject_hash
 
 def get_category_vectors(category_hash, db, model):
@@ -42,11 +42,12 @@ def get_category_vectors(category_hash, db, model):
     category_vectors = {}
     for category_id in category_hash.keys():
         # for cpc_id in category_hash[category_id]:
-        article_vectors = np.array([model.docvecs[id['_id']] for cpc_id in category_hash[category_id] for id in db['patents'].find({"_cpc":cpc_id}, {"_id":1})])
+        # article_vectors = np.array([model.docvecs[id['_id']] for cpc_id in category_hash[category_id] for id in db['patents'].find({"_cpc":cpc_id}, {"_id":1})])
+        article_vectors = np.array([model.docvecs[id['_id']] for id in db.find({"_cpc_category":category_id}, {"_id":1})])
         print len(article_vectors)
         category_vectors[category_id] = np.mean(article_vectors, axis=0)
     # turn the dictionary into a dataframe and return
-    return pd.DataFrame(category_vectors).T
+    return category_vectors
 
 def get_distance_mat(cpc_vectors, dist='cosine'):
     """
@@ -70,13 +71,22 @@ def get_n_closest(distance_mat, subject_id, n=5):
     return closest
 
 
-def get_distances(db, model, n_closest):
-    category_hash = get_category_hash(db)
-    category_ids = list(category_hash.keys())
+def get_category_vectors_all_db(db, model, n_closest):
+    dbs_list = ['pa', 'pb', 'pc', 'pd', 'pe', 'pf', 'pg', 'ph']
+    cpc_vectors = {}
+    for database in dbs_list:
+        category_hash = get_category_hash(db[database])
+        category_ids = list(category_hash.keys())
+        # loop over subjects and average docvecs belonging to subject.
+        # place in dictionary
+        cpc_vectors_single_db = get_category_vectors(category_hash, db[database], model)
+        cpc_vectors.update(cpc_vectors_single_db)
+    return pd.DataFrame(cpc_vectors).T
 
+def get_distances(db, model, n_closest:
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
-    cpc_vectors = get_category_vectors(category_hash, db, model)
+    cpc_vectors = get_category_vectors_all_db(category_hash, db, model)
     distance_mat = get_distance_mat(cpc_vectors)
 
     to_csv = []
@@ -95,6 +105,6 @@ def get_distances(db, model, n_closest):
 if __name__ == '__main__':
     print "main"
     model = Doc2Vec.load('../doc2vec_model')
-    db = MongoClient()['patent']
+    db = MongoClient()
     get_distances(db, model, int(sys.argv[1]))
 

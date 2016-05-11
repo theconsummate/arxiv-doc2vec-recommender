@@ -20,7 +20,7 @@ class DocIterator(object):
         # with conn.cursor(cursor_factory=DictCursor) as cur:
             # TODO: save names of table and database
             # to a central location. For now, db=arxive and table=articles
-        for database in dbs:
+        for database in self.dbs:
             for patent in self.conn[database]['patents'].find():
                 abstract = patent['_source']['patent-document']['abstract']['p']['text'].replace('\n', ' ').strip()
                 # train on body, composed of title and abstract

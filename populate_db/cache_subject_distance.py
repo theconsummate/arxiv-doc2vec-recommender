@@ -30,8 +30,8 @@ def get_category_hash(db):
     OUTPUT: (dict) {subject_id: subject_name}
     """
     # add cpc description here later
-    results = db['patents'].find({}, {"_id":0, "_cpc_category":1})
-    subject_hash = {i['_cpc_category']: i['_cpc_category'] for i in results}
+    results = db.distinct('_cpc_category')
+    subject_hash = {i: i for i in results}
     return subject_hash
 
 def get_category_vectors(category_hash, db, model):
@@ -76,11 +76,11 @@ def get_category_vectors_all_db(db, model):
     cpc_vectors = {}
     category_ids = []
     for database in dbs_list:
-        category_hash = get_category_hash(db[database])
+        category_hash = get_category_hash(db[database]['patents'])
         category_ids += list(category_hash.keys())
         # loop over subjects and average docvecs belonging to subject.
         # place in dictionary
-        cpc_vectors_single_db = get_category_vectors(category_hash, db[database], model)
+        cpc_vectors_single_db = get_category_vectors(category_hash, db[database]['patents'], model)
         cpc_vectors.update(cpc_vectors_single_db)
     return pd.DataFrame(cpc_vectors).T, category_ids
 

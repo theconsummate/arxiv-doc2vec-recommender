@@ -115,11 +115,12 @@ def get_distances(db, model, n_closest):
     edges = pd.DataFrame(to_csv, columns=['source', 'target', 'weight', 'source_name', 'target_name'])
     edges.to_csv('../static/subject_distances.csv', index=False)
 
-def get_distances_subset(model, n_closest, category_hash_with_doc_ids, csv_path):
+def get_distances_subset(n_closest, category_hash_with_doc_ids, csv_path):
     # example
     # category_hash_with_doc_ids = {"cat1":["us-1", "us-2"], "cat2": ["us-3"]}
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
+    model = Doc2Vec.load('../doc2vec_model')
     cpc_vectors  = get_category_vectors_subset(model, category_hash_with_doc_ids)
     distance_mat = get_distance_mat(cpc_vectors)
 

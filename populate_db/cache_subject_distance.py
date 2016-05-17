@@ -56,6 +56,8 @@ def get_distance_mat(cpc_vectors, dist='cosine'):
     the subjects (i,j)
     """
     # dense matrix of distance pairs between subject vectors
+    print cpc_vectors
+    print pdist(cpc_vectors, dist)
     Y = squareform(pdist(cpc_vectors, dist))
     # transfer cpc_ids as index to Y:
     distance_mat = pd.DataFrame(Y, index=cpc_vectors.index, columns=cpc_vectors.index)
@@ -84,6 +86,19 @@ def get_category_vectors_all_db(db, model):
         cpc_vectors.update(cpc_vectors_single_db)
     return pd.DataFrame(cpc_vectors).T, category_ids
 
+
+def get_category_vectors_subset(model, category_hash_with_doc_ids):
+    """
+    Get panda DataFrame where each row is a subject's average docvec
+    and index is the subject_id
+    """
+    category_vectors = {}
+    for category_id in category_hash_with_doc_ids.keys():
+        article_vectors = np.array([model.docvecs[id] for id in category_hash_with_doc_ids[category_id]])
+        category_vectors[category_id] = np.mean(article_vectors, axis=0)
+    # turn the dictionary into a dataframe and return
+    return category_vectors
+
 def get_distances(db, model, n_closest):
     # loop over subjects and average docvecs belonging to subject.
     # place in dictionary
@@ -103,9 +118,33 @@ def get_distances(db, model, n_closest):
     edges = pd.DataFrame(to_csv, columns=['source', 'target', 'weight', 'source_name', 'target_name'])
     edges.to_csv('../static/subject_distances.csv', index=False)
 
+def get_distances_subset(model, n_closest, category_hash_with_doc_ids):
+    # example
+    # category_hash_with_doc_ids = {"cat1":["us-1", "us-2"], "cat2": ["us-3"]}
+    # loop over subjects and average docvecs belonging to subject.
+    # place in dictionary
+    cpc_vectors  = get_category_vectors_subset(model, category_hash_with_doc_ids)
+    distance_mat = get_distance_mat(cpc_vectors)
+
+    to_csv = []
+    for subj_id in list(category_hash_with_doc_ids.keys()):
+        relateds = get_n_closest(distance_mat, subj_id, n=n_closest)
+        print relateds
+        for related_id, dist in relateds.iteritems():
+            weight = round(1./dist)
+            #weight = round((1-dist) * 10)
+            row = (subj_id, related_id, weight, subj_id, related_id)
+            to_csv.append(row)
+
+    edges = pd.DataFrame(to_csv, columns=['source', 'target', 'weight', 'source_name', 'target_name'])
+    edges.to_csv('../static/subject_distances1.csv', index=False)
+
 if __name__ == '__main__':
     print "main"
     model = Doc2Vec.load('../doc2vec_model')
-    db = MongoClient()
-    get_distances(db, model, int(sys.argv[1]))
+    # db = MongoClient()
+    # get_distances(db, model, int(sys.argv[1]))
+    data = {"Soil Working":["US-7600573-B2", "US-5314028-A", "US-4511005-A", "US-6401832-B1", "US-5560433-A", "US-7133757-B2"], "Apparel":["US-20080263746-A1", "US-20060253962-A1", "US-20110197343-A1", "US-5956769-A"]}
+    get_distances_subset(model, 5, data)
+
 

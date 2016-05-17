@@ -2,10 +2,10 @@ from pymongo import MongoClient
 import pymongo.errors as pyerror
 
 master_db = 'patent'
-clusters = ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']
+clusters = ['pa', 'pb', 'pc', 'pd', 'pe', 'pf', 'pg', 'ph']
 collection_name = 'patents'
 
-db = MongoClient()['patent']['patents']
+db = MongoClient()[master_db]['patents']
 for cluster in clusters:
     cluster_db = MongoClient()[cluster]['patents']
     items = cluster_db.find()

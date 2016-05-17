@@ -92,7 +92,12 @@ def get_category_vectors_subset(model, category_hash_with_doc_ids):
     """
     category_vectors = {}
     for category_id in category_hash_with_doc_ids.keys():
-        article_vectors = np.array([model.docvecs[id] for id in category_hash_with_doc_ids[category_id]])
+        article_vectors = []
+        for id in category_hash_with_doc_ids[category_id]:
+            try:
+                article_vectors.append(np.array(model.docvecs[id]))
+            except KeyError:
+                pass
         category_vectors[category_id] = np.mean(article_vectors, axis=0)
     # turn the dictionary into a dataframe and return
     return pd.DataFrame(category_vectors).T

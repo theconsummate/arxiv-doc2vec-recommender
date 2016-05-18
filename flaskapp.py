@@ -11,6 +11,8 @@ def get_dict_from_ids(ids):
     db = MongoClient()['patent']['patents']
     for id in ids:
         item = db.find_one({"_id":id}, {"_id":1, "_cpc_category":1})
+        if item == None:
+            continue
         if item["_cpc_category"] in cats.keys():
             cats[item["_cpc_category"]].append(item["_id"])
         else:
@@ -27,7 +29,9 @@ def viz():
 def get_subset():
     # /var/www/html/flaskapp/static/
     if request.method == 'POST':
-        ids = request.get_json(force=True)['patents']
+        # ids = request.get_json(force=True)['patents']
+        ids = request.form.getlist('patent')
+        print ids
         distances.get_distances_subset(5, get_dict_from_ids(ids), '/var/www/html/flaskapp/static/subject_distances1.csv')
         print "done generating."
         # csv_dest = url_for('static', filename='subject_distances1.csv')

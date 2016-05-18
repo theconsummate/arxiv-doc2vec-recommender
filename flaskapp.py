@@ -31,15 +31,23 @@ def get_subset():
     if request.method == 'POST':
         # ids = request.get_json(force=True)['patents']
         ids = request.form.getlist('patent')
-        print ids
-        distances.get_distances_subset(5, get_dict_from_ids(ids), '/var/www/html/flaskapp/static/subject_distances1.csv')
+        data = get_dict_from_ids(ids)
+        if not bool(data):
+            return redirect(url_for('viz_nodata'), code=302)
+        distances.get_distances_subset(5, data, '/var/www/html/flaskapp/static/subject_distances2.csv')
         print "done generating."
         # csv_dest = url_for('static', filename='subject_distances1.csv')
         return redirect(url_for('viz_subset'), code=302)
 
+
+@app.route('/nodata', methods=['GET', 'POST'])
+def viz_nodata():
+    return "No data found."
+
+
 @app.route('/viz', methods=['GET', 'POST'])
 def viz_subset():
-    csv_dest = url_for('static', filename='subject_distances1.csv')
+    csv_dest = url_for('static', filename='subject_distances2.csv')
     return render_template("louvain.html", csv_dest=csv_dest)
 
 

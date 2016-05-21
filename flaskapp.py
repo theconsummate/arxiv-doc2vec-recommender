@@ -3,8 +3,10 @@ from pymongo import MongoClient
 from flask import Flask, render_template, request, url_for, redirect
 # from gensim.models import Doc2Vec
 from populate_db import cache_subject_distance as distances
+from datetime import datetime
 
 app = Flask(__name__)
+# app.debug = True
 
 def get_dict_from_ids(ids):
     cats = {}
@@ -37,12 +39,12 @@ def get_subset():
         distances.get_distances_subset(5, data, '/var/www/html/flaskapp/static/subject_distances2.csv')
         print "done generating."
         # csv_dest = url_for('static', filename='subject_distances1.csv')
-        return redirect(url_for('viz_subset'), code=302)
+        return redirect(url_for('viz_subset') + '?timestamp='+datetime.now().strftime('%H%M%S%f'), code=302)
 
 
 @app.route('/nodata', methods=['GET', 'POST'])
 def viz_nodata():
-    return "No data found."
+    return "No data found for that search term."
 
 
 @app.route('/viz', methods=['GET', 'POST'])

@@ -14,9 +14,16 @@
 
 {% block scripts %}
 <script src="http://d3js.org/d3.v3.min.js" type="text/JavaScript"></script>
+<!-- <script src="{{ url_for('static', filename='d3/d3.min.js') }}" type="text/JavaScript"></script> -->
 <script type="text/javascript" src="{{ url_for('static', filename='forceInABox/forceInABox.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='jLouvain/jLouvain.js') }}"></script>
 <script>
+d3.select("svg.main").call(d3.behavior.zoom().on('zoom', redraw)).append('svg:g');
+
+function redraw() {
+  // console.log(d3.select("main")[0]);
+  d3.select("svg.main").select("g").attr('transform', 'translate(' + d3.event.translate + ')' + ' scale(' + d3.event.scale + ')');
+};
 
 d3.csv("{{csv_dest}}",function(error,data) {createNetwork(data)});
 
@@ -75,7 +82,7 @@ force = d3.layout.forceInABox()
     .links(edges)
     .on("tick", updateGraph);
 
-  var edgeEnter = d3.select("svg.main").selectAll("g.edge")
+  var edgeEnter = d3.select("svg.main").select("g").selectAll("g.edge")
   .data(edges, function (d) {return d.id})
   .enter()
   .append("g")
@@ -87,7 +94,7 @@ force = d3.layout.forceInABox()
   .style("stroke", "black")
   .style("pointer-events", "none");
 
-  var nodeEnter = d3.select("svg.main")
+  var nodeEnter = d3.select("svg.main").select("g")
   .selectAll("g.node")
   .data(nodes, function (d) {return d.id})
   .enter()
